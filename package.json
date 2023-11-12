@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "maniacs",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
@@ -15,5 +15,11 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3"
-  }
+  },
+  "scripts": {
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider' nuxt",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' nuxt build",
+    "start": "nuxt start",
+    "generate": "NODE_OPTIONS='--openssl-legacy-provider' nuxt generate"
+  },
 }
