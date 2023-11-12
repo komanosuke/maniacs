@@ -1,8 +1,8 @@
 FROM ruby:3.1.3
 
 ENV RAILS_ENV=production
-ARG SECRET_KEY_BASE
-ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
+# ARG SECRET_KEY_BASE
+# ENV SECRET_KEY_BASE=$SECRET_KEY_BASE　#cicdの時
 
 # 必要なパッケージをインストール
 RUN apt-get update -qq && \

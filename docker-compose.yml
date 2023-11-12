@@ -70,8 +70,8 @@ services:
     environment:
       RAILS_ENV: production
     command: ["bundle", "exec", "unicorn", "-p", "3000", "-c", "/app/config/unicorn.rb"]
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
 
   nginx:
     build:

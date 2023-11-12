@@ -23,12 +23,10 @@ test:
 production:
   <<: *default
   # heroku用
-  # adapter: postgresql
-  # encoding: unicode
-  # pool: 5
-  # username: 'user'
-  # password: 'password'
-  # database: 'db'
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
   
   # # ローカル
   # adapter: mysql2
@@ -41,14 +39,14 @@ production:
   # pool: 5
 
   # # docker用
-  adapter: mysql2
-  database: root
-  encoding: utf8
-  pool: 5
-  username: root
-  password: password
-  host: db
-  port: 3306
+  # adapter: mysql2
+  # database: root
+  # encoding: utf8
+  # pool: 5
+  # username: root
+  # password: password
+  # host: db
+  # port: 3306
 
   # RDS利用
   # adapter: mysql2
