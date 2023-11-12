@@ -1,0 +1,25 @@
+
+<div id="flash"><%= flash[:notice] %></div>
+
+<div id="cxxsew-contents">
+    <% case @view %>
+    <% when 'user' %>
+        <%= render partial: "shared/view/user" %>
+    <% when 'work' %>
+        <%= render partial: "shared/view/work" %>
+    <% when 'work_cat' %>
+        <%= render partial: "shared/view/work_cat" %>
+    <% when 'article' %>
+        <%= render partial: "shared/view/article" %>
+    <% when 'article_cat' %>
+        <%= render partial: "shared/view/article_cat" %>
+    <% when 'news' %>
+        <%= render partial: "shared/view/news" %>
+    <% when 'news_cat' %>
+        <%= render partial: "shared/view/news_cat" %>
+    <% end %>
+    
+</div>
+
+
+<%= javascript_pack_tag 'view' %>

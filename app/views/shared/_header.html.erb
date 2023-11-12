@@ -1,0 +1,60 @@
+<header id="top-header">
+	<div id="hd-flex">
+		<a href="/">
+			<div class="hd-side pf-side pc">LOGO</div>
+		</a>
+		<div class="toggle-btn sp">
+			<div id="cross">
+				<span class="menu-line-top"></span>
+				<span class="menu-line-middle"></span>
+				<span class="menu-line-bottom"></span>
+			</div>
+		</div>
+		<a href="/" class="pf-hd-center" id="hd-center">
+			<div>MANIACS</div>
+		</a>
+		<% if admin_logged_in? %>
+			<%= link_to "Log out", admin_logout_path, method: :delete, class:"hd-side admin-hd-side" %>
+		<% else %>
+			<% if logged_in? %>
+				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side pf-side" %>
+			<% else%>
+				<a href="/login" id="hd-right">
+					<div class="hd-side pf-side pc">log in</div>
+					<div class="sp" id="sp-side">
+						<svg width="100%" height="100%" viewBox="-150 -150 300 300">
+							<path d="M142 -47 L88 121 L-89 121 L-143 -47 L-1 -150 z" stroke="#fff" fill="none" stroke-width="4"></path>
+						</svg>
+						<div>log in</div>
+					</div>
+				</a>
+			<% end %>
+		<% end %>
+	</div>
+</header>
+
+<div class="hidden sp" id="sp-bg"></div>
+<div class="hidden sp" id="sp-menu">
+	<h1 class="menu-h2">- Menu -</h1>
+	<div class="btn be-pink"><a href="/works">Works</a></div>
+	<div class="btn be-pink"><a href="/articles">Articles</a></div>
+	<div class="btn be-pink"><a href="/news">Comics</a></div>
+	<div class="explain">
+		<div class="rect-wrapper" id="sub-menu2">
+			<a href="/help">HELP</a>
+			<a href="/contact">CONTACT</a>
+			<a href="/policy">POLICY</a>
+			<a href="/terms">TERMS</a>
+		</div>
+	</div>
+	<div id="menu-close">×</div>
+</div>
+
+<% if @cart.present? and @cart.cart_works.length != 0 %>
+	<a href="/purchase" id="cart-sign">
+		<%= image_tag '/image/cart.png', alt:"" %>
+	</a>
+<% end %>
+
+<div class="brand-theme">まっさらのままで 風に吹かれて</div>
+	  

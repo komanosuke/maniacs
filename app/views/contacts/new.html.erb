@@ -1,0 +1,25 @@
+
+
+<div id="cxxsew-contents">
+    <div class="article">
+        <h1>- Contact -</h1>
+        
+        <%= form_with model: @contact, url: confirm_path do |f| %>
+            <label for="subject">件名<span class="required">必須</span></label>
+                <%= f.select(:subject, Contact.subjects.keys, { include_blank: '選択してください' }, required: true, id:"contact-select") %>
+            <label for="name">お名前<span class="required">必須</span></label>
+                <%= f.text_field :name, autofocus: true, maxlength: 40, placeholder: "お名前を入力してください", required: true %>
+            <label for="email">メールアドレス<span class="required">必須</span></label>
+                <%= f.email_field :email, autofocus: true, maxlength: 40, placeholder: "メールアドレスを入力してください", required: true %>
+            <label for="phone_number">電話番号<span class="required">必須</span></label>
+                <%= f.text_field :phone_number, autofocus: true, maxlength: 40, placeholder: "電話番号を入力してください", required: true %>
+            <label for="message">お問い合わせ内容<span class="required">必須</span></label>
+                <%= f.text_area :message, autofocus: true, placeholder: "お問い合わせ内容を入力してください", required: true %>
+            <!--ボットチェック
+                必要に応じて、会社名、所在地、お問い合わせに対する返信までの期間など、追加情報を入力する欄を用意
+            -->
+            <%= f.submit '送信',class:"btn", id:"submit-btn" %>
+        <% end %>
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+<main>
+    <div class="contents" id="login-con">
+        <h1>- Account Information -</h1>
+        <div id="flash"><%= flash[:notice] %></div>
+
+        <div id="profile-user">
+            <h2>基本情報</h2>
+            <div id="profile-user-wrapper">
+                <table id="profile-table">
+                    <tr>
+                        <th>名前</th>
+                        <td><%= @user.name %></td>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <td><%= @user.username %></td>
+                    </tr>
+                    <tr>
+                        <th>紹介文</th>
+                        <td>
+                            <% if @user.profile != "" %>
+                                <%= @user.profile %>
+                            <% else %>
+                                紹介文が登録されていません。
+                            <% end %>
+                        </td>
+                    </tr>
+                </table>
+                <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
+            </div>
+        </div>
+
+        <% if current_user.id == params[:id].to_i %>
+            <div id="profile-cxxsew">
+                <h2>カート内容</h2>
+                <div class="btn sub-btn"><%= link_to "カート内容を確認", "/purchase" %></div>
+            </div>
+        
+            <div id="profile-study">
+                <h2>学習記録</h2>
+                <div class="btn sub-btn"><%= link_to "学習記録を見る", "/collection" %></div>
+            </div>
+
+            <div id="profile-sns">
+                <h2>投稿内容</h2>
+                <div class="btn sub-btn"><%= link_to "SNS投稿内容を確認", "/posted/" + current_user.id.to_s %></div>
+            </div>
+        <% end %>
+    </div>
+</main>

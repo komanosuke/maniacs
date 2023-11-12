@@ -1,0 +1,4 @@
+<p>こんにちは<%= @user.email %>様</p>
+<p>この度はPortfolioに登録いただきありがとうございます。</p>
+<p>つきましては、下記リンクをクリックしてアカウントを有効化してください。</p>
+<%= link_to "アカウントを有効化する", edit_account_activation_url(@user.activation_token, email: @user.email) %>

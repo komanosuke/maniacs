@@ -1,0 +1,29 @@
+<div class="contents" id="login-con">
+  <% if @contact %>
+    <p class="notice">お問い合わせ内容は以下の通りでよろしいですか？</p>
+    <div id="contact-wrapper">
+      <p>お名前: <%= @contact.name %></p>
+      <p>メッセージ: <%= @contact.message %></p>
+    </div>
+  <% else %>
+    <p class="notice">申し訳ありませんが、こちらのリンクからやり直してください。</p>
+    <%= link_to "お問い合わせ画面へ戻る", '/contact' %>
+  <% end %>
+
+  <%= form_for(@contact) do |f| %>
+      <%= f.hidden_field :subject %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :phone_number %>
+      <%= f.hidden_field :message %>
+      <div><%= f.submit '送信', class:'btn contact-btn', id:'submit-btn' %></div>
+  <% end %>
+  <%= form_for @contact, url: back_path do |f| %>
+      <%= f.hidden_field :subject %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :phone_number %>
+      <%= f.hidden_field :message %>
+      <div><%= f.submit '入力画面に戻る', class:'btn contact-btn' %></div>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+
+<div class="back" id="dora-back">
+    <div class="contents" id="dora-con">
+        <h1>マイクボタンを押してコマに話しかけてみよう！</h1>
+        <p id="dora-alert">※PC（Chrome）推奨、音量注意！</p>
+        <div id="dora-wrapper">
+            <%# <input type="text" id="message"> %>
+            <%= form_tag(url_for(:action => 'doraemon'), :remote => true) do %>
+                <img src="/svg/microphone.svg" id="btn_stt">
+                <%= text_field_tag :msg, nil, {id:'msg-input', required: true} %>
+                <%= submit_tag 'SEND' ,{id: 'send', class:'btn'} %>
+            <% end %>
+        </div>
+        <div>
+        <p id="output_stt">ここに結果が返ります。</p>
+        <p id="confidence_stt"></p>
+        </div>
+        <p id="hidden-word"><%= @word %></p>
+        <button id="voiceButton">voice</button>
+        <button id="stop">stop</button>
+        <button id="play">play</button>
+
+        <%= video_tag "/movie/doraemon.mp4", muted: true, loop: true, poster:"/movie/doraemon.PNG", id:'doraemon', playsinline: true, 'webkit-playsinline': true %>
+    </div>
+    <div id="response-text">
+    </div>
+</div>
+
+<%= javascript_include_tag 'doraemon' %>

@@ -1,0 +1,29 @@
+
+<%= image_tag "/image/koma3.png", class:"header-img sp", alt:"" %>
+
+<div id="cxxsew-contents">
+    <div class="article">
+        <h1>- Articles -</h1>
+        <p class="center">ここでは、徒然なるままに書いた記事をご覧いただけます。</p>
+    </div>
+    
+    <% if @articles.empty? %>
+        <p>まだ記事が投稿されていません。</p>
+    <% else %>
+        <div id="content">
+            <div class="works pfs">
+                <% @articles.each do |article| %>
+                    <div class="work pf">
+                        <a href="/articles/<%= article.id %>">
+                            <%= image_tag article.image.url, alt:"" %>
+                            <div class="pf-p-wrapper article-news">
+                                <p><%= article.title %></p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    <div class="btn be-pink"><a href="/">トップに戻る</a></div>
+</div>

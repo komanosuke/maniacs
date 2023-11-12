@@ -1,0 +1,29 @@
+
+<%= image_tag "/image/koma2.png", class:"header-img sp", id:"works-hd-img", alt:"" %>
+
+<div id="cxxsew-contents">
+    <div class="article">
+        <h1>- Works -</h1>
+        <p class="center">ここでは、作品ラインナップをご覧いただけます。作品は本サイトでご注文いただけます。</p>
+    </div>
+    <% if @works.empty? %>
+        <p>現在、販売中の作品はありません。</p>
+    <% else %>
+        <div class="works pfs">
+            <% @works.each do |work| %>
+            <div class="work pf">
+                <a href="/works/<%= work.id %>">
+                    <%= image_tag work.image.url, alt:"" %>
+                    <div class="pf-p-wrapper">
+                        <p>title: <%= work.title %></p>
+                        <p>price: ￥<%= work.price.to_s(:delimited) %></p>
+                    </div>
+                </a>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+    <div class="btn be-pink"><a href="/">トップに戻る</a></div>
+    
+</div>
+

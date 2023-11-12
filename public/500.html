@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>お探しのページは存在しません。 (404)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    @charset "utf-8";
+    body {
+      margin: 0;
+      width: 100%;
+      background-color: #000;
+    }
+
+    main {
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 24px;
+    }
+
+    h1, h2, h3, p, a {
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    header {
+      margin: 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      background-color: #fff;
+      box-shadow: 1px 1px 10px grey;
+    }
+
+    #top-header {
+      background-color: #000;
+    }
+
+    #hd-flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px;
+    }
+
+    .hd-side {
+      min-width: 60px;
+      height: 100%;
+      background-color: #4ca3c5;
+      text-align: center;
+      line-height: 60px;
+      color: #fff;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    #hd-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      margin: auto;
+    }
+
+    #hd-center div {
+      font-size: 25px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .pf-hd-center {
+      color: #fff;
+    }
+
+    .pf-side {
+      color: #000;
+      background-color: #fff;
+    }
+
+
+    .contents {
+      width: 70%;
+      margin: 120px auto 80px;
+      text-align: center;
+    }
+
+    .btn {
+      background-color: #4ca3c5;
+      width: 200px;
+      height: 50px;
+      line-height: 50px;
+      margin: 30px auto;
+      font-size: 20px;
+      font-family: 'Times New Roman', Times, serif;
+      color: #fff;
+    }
+
+    .submit-btn {
+      background-color: #000;
+      display: block;
+      cursor: pointer;
+    }
+    
+    footer {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      padding: 30px;
+      z-index: 997;
+      position: relative;
+    }
+
+    footer a {
+        color: #fff;
+    }
+
+    #ft-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      margin: 5px auto 30px;
+      font-size: 25px;
+    }
+
+    footer img {
+      width: 50px;
+      margin: auto 5px;
+    }
+
+    footer p {
+      margin-bottom: 5px;
+    }
+
+    .icon {
+      width: 22px;
+    }
+    
+    .follow-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px auto;
+      padding: 0;
+    }
+
+    .follow-links a {
+        display: block;
+        margin: 0 20px;
+    }
+  </style>
+</head>
+  <body>
+    <header id="top-header">
+      <div id="hd-flex">
+        <a href="/">
+          <div class="hd-side pf-side">home</div>
+        </a>
+        <a href="/" class="pf-hd-center" id="hd-center">
+          <div>MANIACS</div>
+        </a>
+        <a href="#" id="hd-right"><div class="hd-side pf-side">404</div></a>
+      </div>
+    </header>
+    <main>
+      <div class="contents">
+          <h1>- 500エラー 申し訳ありませんが、何か問題が発生しました -</h1>
+          <p id="home-p">もしアプリケーションのオーナーである場合は、詳細情報についてログを確認してください。</p>
+          <a href="/"><div class="btn submit-btn">トップに戻る</div></a>
+      </div>
+    </main>
+    <footer>
+      <a href="/" id="ft-center">
+        <div>MANIACS</div>
+      </a>
+      <p>代表取締役: 駒井 隆司</p>
+      <p>石川県金沢市利家城下町100万石</p>
+      <p>aaa@example.com</p>
+      <ul class="follow-links">
+        <li class="follow-link"><a href="https://twitter.com" target="_blank"><img src="https://raw.githubusercontent.com/komanosuke/portfolio/2edcfc80c8dfe54fd9277f547785719bf3af3972/public/svg/twiiter_w.svg" class="icon"></a></li>
+        <li class="follow-link"><a href="https://ja-jp.facebook.com" target="_blank"><img src="https://raw.githubusercontent.com/komanosuke/portfolio/2edcfc80c8dfe54fd9277f547785719bf3af3972/public/svg/facebook_w.svg" class="icon"></a></li>
+        <li class="follow-link"><a href="https://www.instagram.com" target="_blank"><img src="https://raw.githubusercontent.com/komanosuke/portfolio/2edcfc80c8dfe54fd9277f547785719bf3af3972/public/svg/instagram_w.svg" class="icon"></a></li>
+        <li class="follow-link"><a href="https://line.me" target="_blank"><img src="https://raw.githubusercontent.com/komanosuke/portfolio/2edcfc80c8dfe54fd9277f547785719bf3af3972/public/svg/line_w.svg" class="icon"></a></li>
+      </ul>
+      <small>(C) 2023 MANIACS.Inc All Rights Reserved.</small>
+    </footer>
+  </body>
+  <script>
+    let hd_right = document.getElementById('hd-right');
+    hd_right.style.visibility = "hidden";
+  </script>
+</html>

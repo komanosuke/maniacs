@@ -1,0 +1,61 @@
+
+
+<div id="cxxsew-contents">
+    <h1>- Confirm -</h1>
+    <p>カートの内容をご確認ください。
+    「決済」ボタンで商品の購入手続きが完了します。</p>
+    
+    
+    <div class="work-box" id="purchase-box">
+        <div id="cart-title">
+            <%= image_tag "/image/cart.png", alt:"" %>
+            <p>Check your cart</p>
+        </div>
+        <% if @works.empty? %>
+            <p class="center">カートは空です。</p>
+        <% else %>
+            <p><%= @works.length %>点の商品が選択されています。</p>
+            <div class="selected-container">
+                <!-- <input type="checkbox"> -->
+                <% @works.each do |work| %>
+                    <div class="inner-container">
+                        <div class="selected-item">
+                            <div class="selected-wrapper">
+                                <div class="selected">
+                                    <div>
+                                        <p>title: <%= work.title %></p>
+                                        <p>type: 
+                                            <% if work.onlyone == 'original' %>
+                                                <%= 'オリジナル（一点物）' %>
+                                            <% else %>
+                                                <%= 'ノーマル' %>
+                                            <% end %>
+                                        </p>
+                                        <p>price: ￥<%= work.price.to_s(:delimited) %></p>
+                                        <p>message: なし</p>
+                                    </div>
+                                    <%= image_tag work.image.url, alt:"" %>
+                                </div>
+                            </div>
+                            <%= form_with url: '/cart_works/delete' do |form| %>
+                                <%= form.hidden_field "work_id", {value: work.id} %>
+                                <%= image_submit_tag("/image/bin.jpg", class:"bin", alt:"") %>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+                <p class="total">合計金額: <%= @total_price.to_s(:delimited) %>円</p>
+            </div>
+        <% end %>
+    </div>
+    <% if !(@works.empty?) %>
+        <div class="btn" id="submit-btn"><a href="/thanks">決済</a></div>
+    <% end %>
+    <p>※デモのため、決済ボタンを押しても決済はされません。カートを空にしてThanksページが表示されます。</p>
+    <div class="btn" id="submit-btn"><a href="/works">商品一覧に戻る</a></div>
+    
+</div>
+
+<script>
+    $("#cart-sign").css("display", "none");
+</script>

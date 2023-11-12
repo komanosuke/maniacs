@@ -1,0 +1,48 @@
+<main>
+    <div class="contents" id="login-con">
+        <h1>- アカウント登録 -</h1>
+        <%= form_with(model: @user, url: { controller: 'users', action: 'confirm' }) do |f| %>
+            <div class="form-group">
+                <label for="name">アカウント名（必須）</label>
+                <%= f.text_field :name, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="name">アカウントID（必須）※登録後、先頭に@がつきます</label>
+                <%= f.text_field :username, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="email">メールアドレス（必須）</label>
+                <%= f.email_field :email, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード（必須）※8文字以上20文字以下</label>
+                <%= f.password_field :password, required: true, minlength: 8, maxlength: 20 %>
+            </div>
+            <div class="form-group">
+                <label for="zip">郵便番号（必須）</label>
+                <%= f.text_field :zip, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="prefecture">住所(都道府県)（必須）</label>
+                <%= f.text_field :prefecture, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="city">住所(市区町村)（必須）</label>
+                <%= f.text_field :city, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="street">それ以降の住所（必須）</label>
+                <%= f.text_field :street, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="tel">電話番号（必須）</label>
+                <%= f.text_field :tel, required: true %>
+            </div>
+            <div class="form-group">
+                <label for="profile">プロフィール内容（必須）</label>
+                <%= f.text_field :profile, required: true %>
+            </div>
+            <%= f.submit "作成", class:"pf-submit" %>
+        <% end %>
+    </div>
+</div>

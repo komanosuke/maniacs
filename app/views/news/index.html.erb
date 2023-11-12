@@ -1,0 +1,31 @@
+
+<%= image_tag "/image/koma5.png", class:"header-img sp", alt:"" %>
+
+<div id="cxxsew-contents">
+    <div class="article">
+        <h1>- Comics -</h1>
+        
+        <p class="center">ここでは、楽しい４コマ漫画をご覧いただけます。</p>
+    </div>
+    
+    <% if @news.empty? %>
+        <p>まだ４コマが投稿されていません。</p>
+    <% else %>
+        <div id="content">
+            <div class="works pfs mangas">
+                <% @news.each do |news| %>
+                    <div class="work pf">
+                        <a href="/news/<%= news.id %>">
+                            <%= image_tag news.image.url, alt:"" %>
+                            <div class="pf-p-wrapper article-news">
+                                <p><%= news.title %></p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    <div class="btn be-pink"><a href="/">トップに戻る</a></div>
+</div>
+

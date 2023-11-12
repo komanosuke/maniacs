@@ -1,0 +1,28 @@
+<main>
+    <% if logged_in? %>
+        <div class="contents">
+            <h1>- ログインしています -</h1>
+            <%= link_to "トップページへ", '/', class:'btn block' %>
+        </div>
+    <% else %>
+        <div class="contents" id="login-con">
+            <h1>- Log in -</h1>
+            <div id="flash"><%= flash[:alert] %></div>
+            <p style="margin-bottom: 35px;">ログインすると、全てのサービスで、アカウントにひもづくデータの保存が可能になります。</p>
+
+            <%= form_for(:session, url: login_path) do |f| %>
+                <label for="email">メールアドレス</label>
+                    <%= f.email_field :email, placeholder:'メールアドレスを入力してください', required: true %>
+                <label for="password">パスワード</label>
+                    <%= f.password_field :password, placeholder:'パスワードを入力してください', required: true %>
+                <%= f.submit 'Log in', class:'btn submit-btn' %>
+            <div class="btn sub-btn"><%= link_to "Forget Password?", '/password_resets/new' %></div>
+            <div class="btn sub-btn"><%= link_to "アカウント作成", "/users/new" %></div>
+            <% end %>
+        </div>
+    <% end %>
+</main>
+
+<script>
+    $("#hd-right").css("visibility", "hidden");
+</script>

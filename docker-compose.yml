@@ -1,0 +1,85 @@
+# version: '3'
+# services:
+  # db:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/mysql/Dockerfile
+  #   ports:
+  #     - '3306:3306'
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+  #   extends:
+  #     file: ./docker/mysql/password.yml
+  #     service: password
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+
+#   app:
+#     build:
+#       context: .
+#       dockerfile: ./Dockerfile
+#     command: bundle exec unicorn -p 3000 -c /app/config/unicorn.rb
+#     ports:
+#       - '3000:3000'
+#     volumes:
+#       - /var/tmp
+#       - .:/app
+#     depends_on:
+#       - db
+#     extends:
+#       file: ./docker/mysql/password.yml
+#       service: password
+
+#   nginx:
+#     build:
+#       context: .
+#       dockerfile: ./docker/nginx/Dockerfile
+#     ports:
+#       - '80:80'
+#     volumes_from:
+#       - app
+      
+# volumes:
+#   db_data:
+
+version: '3'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    extends:
+      file: ./mysql/password.yml
+      service: password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: production
+    command: ["bundle", "exec", "unicorn", "-p", "3000", "-c", "/app/config/unicorn.rb"]
+    # depends_on:
+    #   - db
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+volumes:
+  db_data:

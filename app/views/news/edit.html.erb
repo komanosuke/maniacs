@@ -1,0 +1,48 @@
+
+<div id="flash"><%= flash[:notice] %></div>
+<div id="cxxsew-contents">
+    
+    <div class="table-name">
+        <h1><%= @news.title %></h1>
+        <%= image_tag @news.image.url, class:'new-image' %>
+        <%= form_for(@news) do |form| %>
+            <div class="edit-wrapper">
+                <div class="tr edit-tr">
+                    <div class="td edit-td">ID</div>
+                    <div class="td edit-td"><%= @news.id %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">TITLE</div>
+                    <div class="td edit-td"><%= form.text_field :title, class:"form", required: true %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">IMAGE TITLE</div>
+                    <div class="td edit-td"><%= form.text_field :image_title, class:"form", required: true %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">TEXT</div>
+                    <div class="td edit-td about-text"><%= form.text_area :text, class:"form", required: true %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">CATEGORY</div>
+                    <div class="td edit-td">
+                        <%= form.select :news_cat_id , @news_cat_id_list, { include_blank: true, selected: @news.news_cat_id }, {class: "form", required: true} %>
+                    </div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">IMAGE</div>
+                    <div class="td edit-td" id="image-td">
+                        <%= form.file_field :image, id:'img_file', accept:'image/*' %>
+                        <div id="preview">
+                            <p>--- Preview ---</p>
+                            <%= image_tag @news.image.url, id:"preview-image", alt:"" %>
+                        </div>
+                    </div>
+                </div>
+                <%= form.submit "更新", class:"btn" %>
+            </div>
+        <% end %>
+        <div class="btn" id="submit-btn"><a href="/admin">管理画面トップへ</a></div>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'shared/header' %>
+    <%= yield %>
+    <%= render 'shared/footer' %>
+  </body>
+</html>
+
+<% if params[:action] == 'socket' %>
+<script>
+document.addEventListener('turbolinks:load', function() {
+  var socketCheckedDiv = document.createElement('div');
+  socketCheckedDiv.id = 'socket-checked';
+  document.querySelector('main').appendChild(socketCheckedDiv);
+});
+</script>
+<% else %>
+<script>
+  var existingSocketCheckedDiv = document.querySelector('#socket-checked');
+  if (existingSocketCheckedDiv) {
+    existingSocketCheckedDiv.remove();
+  }
+</script>
+<% end %>

@@ -1,0 +1,50 @@
+<div class="table-name">
+    <h1>４コマ一覧</h1>
+    <% if @news.empty? %>
+        <p>４コマが投稿されていません。</p>
+        <div class="btn"><a href="/news/new">新規作成</a></div>
+    <% else %>
+        <div class="btn"><a href="/news/new">新規作成</a></div>
+        <p>４コマ数合計: <%= @news.length %></p>
+        <p>←データ列が多い場合は横スクロール→</p>
+        <div class="table-wrapper" id="scroll-table">
+            <div class="tr">
+                <div class="th scroll-th check">
+                    <input type="checkbox" id="check-all">
+                </div>
+                <div class="th scroll-th edit">EDIT</div>
+                <div class="th scroll-th id">ID</div>
+                <div class="th scroll-th image">IMAGE</div>
+                <div class="th scroll-th name">TITLE</div>
+                <div class="th scroll-th category">CATEGORY</div>
+            </div>
+            <% @news.each do |news| %>
+                <div class="tr">
+                    <div class="td scroll-td check">
+                        <input type="checkbox" class="delete-check">
+                    </div>
+                    <div class="td scroll-td edit">
+                        <%= link_to '/news/' + news.id.to_s + '/edit' do %>
+                            <%= image_tag "/svg/edit.svg", class: 'icon', id: 'edit-icon' %>
+                        <% end %>
+                    </div>
+                    <div class="td scroll-td id"><%= news.id %></div>
+                    <div class="td scroll-td image">
+                        <%= image_tag news.image.url, class: "table-image" %>
+                    </div>
+                    <div class="td scroll-td name"><%= news.title %></div>
+                    <div class="td scroll-td category"><%= @news_cat_hash[news.news_cat_id] %></div>
+                    
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+
+    <%= form_with url: '/delete' do |form| %>
+        <%= form.hidden_field "delete_list", {value: ''} %>
+        <%= form.hidden_field "which", {value: 'news'} %>
+        <%= form.submit "削除", class:"btn submit-btn", id:"delete-btn" %>
+    <% end %>
+
+    <div class="btn" id="submit-btn"><a href="/admin">管理画面トップへ</a></div>
+</div>

@@ -1,0 +1,37 @@
+<div class="table-name">
+    <h1>記事カテゴリー 一覧</h1>
+    <% if @article_cats.empty? %>
+        <p>記事カテゴリーが投稿されていません。</p>
+        <div class="btn"><a href="/article_cats/new">新規作成</a></div>
+    <% else %>
+        <div class="btn"><a href="/article_cats/new">新規作成</a></div>
+        <p>記事カテゴリー数合計: <%= @article_cats.length %></p>
+        <p>←データ列が多い場合は横スクロール→</p>
+        <div class="table-wrapper" id="scroll-table">
+            <div class="tr">
+                <div class="th scroll-th check">
+                    <input type="checkbox" id="check-all">
+                </div>
+                <div class="th scroll-th id">ID</div>
+                <div class="th scroll-th name">NAME</div>
+            </div>
+            <% @article_cats.each do |article_cat| %>
+                <div class="tr">
+                    <div class="td scroll-td check">
+                        <input type="checkbox" class="delete-check">
+                    </div>
+                    <div class="td scroll-td id"><%= article_cat.id %></div>
+                    <div class="td scroll-td name"><%= article_cat.name %></div>
+                </div>
+            <% end %>  
+        </div>
+    <% end %>
+
+    <%= form_with url: '/delete' do |form| %>
+        <%= form.hidden_field "delete_list", {value: ''} %>
+        <%= form.hidden_field "which", {value: 'article_cat'} %>
+        <%= form.submit "削除", class:"btn submit-btn", id:"delete-btn" %>
+    <% end %>
+    
+    <div class="btn" id="submit-btn"><a href="/admin">管理画面トップへ</a></div>
+</div>

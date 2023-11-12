@@ -1,0 +1,64 @@
+
+<div id="flash"><%= flash[:notice] %></div>
+
+<div id="cxxsew-contents">
+    <div class="table-name">
+        <h1><%= @work.title %></h1>
+        <%= image_tag @work.image.url, class:'new-image' %>
+        <%= form_for(@work) do |form| %>
+            <div class="edit-wrapper">
+                <div class="tr edit-tr">
+                    <div class="td edit-td">ID</div>
+                    <div class="td edit-td"><%= @work.id %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">NAME</div>
+                    <div class="td edit-td"><%= form.text_field :title, class:"form", required: true %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">PRICE</div>
+                    <div class="td edit-td"><%= form.number_field :price, class:"form", required: true %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">TEXT</div>
+                    <div class="td edit-td about-text"><%= form.text_area :text, class:"form", required: true %></div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">GRADE</div>
+                    <div class="td edit-td">
+                        <%= form.select :onlyone, [['ノーマル', 'normal'], ['オリジナル', 'original']], { include_blank: true, selected: @work.onlyone }, {class: "form", required: true} %>
+                    </div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">STATUS</div>
+                    <div class="td edit-td">
+                        <%= form.select :status, [['販売可能（OEM）', 'now_on_sale'], ['在庫切れ', 'sold_out']], { include_blank: true, selected: @work.status }, {class: "form", required: true} %>
+                    </div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">CATEGORY</div>
+                    <div class="td edit-td">
+                        <%= form.select :work_cat_id , @work_cat_id_list, { include_blank: true, selected: @work.work_cat_id }, {class: "form", required: true} %>
+                    </div>
+                </div>
+                <div class="tr edit-tr">
+                    <div class="td edit-td">IMAGE</div>
+                    <div class="td edit-td" id="image-td">
+                        <%= form.file_field :image, id:'img_file', accept:'image/*' %>
+                        <div id="preview">
+                            <p>--- Preview ---</p>
+                            <%= image_tag @work.image.url, id:"preview-image", alt:"" %>
+                        </div>
+                    </div>
+                </div>
+                <%= form.submit "更新", class:"btn" %>
+            </div>
+        <% end %>
+        <div class="btn"><a href="/admin_view?which=work">商品一覧に戻る</a></div>
+        <div class="btn" id="submit-btn"><a href="/admin">管理画面トップへ</a></div>
+    </div>
+</div>
+
+
+
+<%= javascript_pack_tag 'image_up' %>

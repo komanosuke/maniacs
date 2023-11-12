@@ -1,0 +1,12 @@
+<main>
+  <div class="contents" id="login-con">
+    <h1>パスワード再設定</h1>
+    <div id="flash"><%= flash[:alert] %></div>
+    <p>入力されたメールアドレス宛にパスワード再設定メールを送信しますので、メールの指示に従ってパスワードの再設定手続きをして下さい。</p>
+    <%= form_with(scope: :password_reset, url: password_resets_path, local: true) do |f| %>
+      <label for="email">メールアドレス</label>
+      <%= f.email_field :email, placeholder:'メールアドレスを入力してください', required: true %>
+    <%= f.submit '送信する', class:"btn submit-btn" %>
+    <% end %>
+  </div>
+</main>

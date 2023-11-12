@@ -1,0 +1,69 @@
+
+
+<div id="cxxsew-contents">
+    <h1>- Let's Get Our Works -</h1>
+    <p>商品購入ページ</p>
+    
+    <div class="work-box">
+        <div>title: <%= @work.title %>
+        <% if @work.onlyone == 'original' %>
+        ◆
+        <% end %>
+        </div>
+        <%= image_tag @work.image.url, alt:"" %>
+        <div class="price">price: ￥<%= @work.price.to_s(:delimited) %></div>
+        <p><%= @work.text %></p>
+        <%= form_for @cart_work, url: '/cart_works', method: 'post' do |form| %>
+            <%= form.hidden_field "work_id", {value: @work.id} %>
+            <%= form.hidden_field "cart_id", {value: @cart.id} %>
+            <% if @work.status == 'soldout' %>
+                <div class="btn" id="soldout">SOLD OUT</div>
+            <% elsif !(@cart_works.empty?) and @cart_work_check != nil %>
+                <% if @cart_work_check.status == 'checked' %>
+                    <div class="btn" id="soldout">選択済み</div>
+                    <p class="anno">一点物の作品につき、在庫は現在カート内にある一点のみです。またカートに予約機能はございません。他の方がこの作品の決済手続きを完了した場合、カートから消去されます。お早めに決済処理にお進みください。</p>
+                <% else %>
+                    <%= form.submit 'カートに追加' ,{class: 'btn',id: 'submit-btn'} %>
+                <% end %>
+            <% else %>
+                <%= form.submit 'カートに追加' ,{class: 'btn',id: 'submit-btn'} %>
+            <% end %>
+        <% end %>
+    </div>
+    <div id="flash"><%= flash[:notice] %></div>
+    <div class="selected-container" id="cart-container">
+        <% if @cart_works.empty? %>
+            <p class="total">現在、カートは空です。</p>
+        <% else %>
+            <p class="total">カート状況</p>
+            <p><%= @works_view.length %>点の商品が選択されています。</p>
+            <!-- <input type="checkbox"> -->
+            <% @works_view.each do |work| %>
+                <div class="inner-container cart-inner">
+                    <div class="selected-item">
+                        <div class="selected-wrapper">
+                            <div class="selected">
+                                <div>
+                                    <p>title: <%= work.title %></p>
+                                    <p>price: <%= work.price.to_s(:delimited) %></p>
+                                </div>
+                                <%= image_tag work.image.url, alt:"" %>
+                            </div>
+                        </div>
+                        <%= form_with url: '/cart_works/delete' do |form| %>
+                            <%= form.hidden_field "work_id", {value: work.id} %>
+                            <%= form.hidden_field "command", {value: 'show'} %>
+                            <%= image_submit_tag("/image/bin.jpg", class:"bin", alt:"") %>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+            <p class="total">合計金額: <%= @total_price.to_s(:delimited) %>円</p>
+        <% end %>
+    </div>
+    <% if !(@cart_works.empty?) %>
+        <div class="btn"><a href="/purchase">購入確認画面へ</a></div>
+    <% end %>
+    <div class="btn"><a href="/works">商品一覧に戻る</a></div>
+</div>
+

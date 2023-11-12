@@ -1,0 +1,50 @@
+<div class="table-name">
+    <h1>投稿記事一覧</h1>
+    <% if @articles.empty? %>
+        <p>記事が投稿されていません。</p>
+        <div class="btn"><a href="/articles/new">新規作成</a></div>
+    <% else %>
+        <div class="btn"><a href="/articles/new">新規作成</a></div>
+        <p>記事数合計: <%= @articles.length %></p>
+        <p>←データ列が多い場合は横スクロール→</p>
+        <div class="table-wrapper" id="scroll-table">
+            <div class="tr">
+                <div class="th scroll-th check">
+                    <input type="checkbox" id="check-all">
+                </div>
+                <div class="th scroll-th edit">EDIT</div>
+                <div class="th scroll-th id">ID</div>
+                <div class="th scroll-th image">IMAGE</div>
+                <div class="th scroll-th name">TITLE</div>
+                <div class="th scroll-th category">CATEGORY</div>
+            </div>
+            <% @articles.each do |article| %>
+                <div class="tr">
+                    <div class="td scroll-td check">
+                        <input type="checkbox" class="delete-check">
+                    </div>
+                    <div class="td scroll-td edit">
+                        <%= link_to '/articles/' + article.id.to_s + '/edit' do %>
+                            <%= image_tag "/svg/edit.svg", class: 'icon', id: 'edit-icon' %>
+                        <% end %>
+                    </div>
+                    <div class="td scroll-td id"><%= article.id %></div>
+                    <div class="td scroll-td image">
+                        <%= image_tag article.image.url, class: "table-image" %>
+                    </div>
+                    <div class="td scroll-td name"><%= article.title %></div>
+                    <div class="td scroll-td category"><%= @article_cat_hash[article.article_cat_id] %></div>
+                    
+                </div>
+            <% end %>  
+        </div>
+    <% end %>
+
+    <%= form_with url: '/delete' do |form| %>
+        <%= form.hidden_field "delete_list", {value: ''} %>
+        <%= form.hidden_field "which", {value: 'article'} %>
+        <%= form.submit "削除", class:"btn submit-btn", id:"delete-btn" %>
+    <% end %>
+
+    <div class="btn" id="submit-btn"><a href="/admin">管理画面トップへ</a></div>
+</div>

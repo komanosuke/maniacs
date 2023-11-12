@@ -1,0 +1,16 @@
+
+
+<div id="cxxsew-contents">
+    <p id="content-date"><%= @article.updated_at %></p>
+    <h1 id="blog-title" class="center"><%= @article.title %>（Vol.<%= @article.id %>）</h1>
+    
+    
+    <div class="work-box" id="content-box">
+        <%= image_tag @article.image.url, class:"content-img", alt:"" %> 
+        <div class="content-img-title">- <%= @article.image_title %> -</div>
+        <p><%= @article.text %></p>
+    </div>
+    <div class="btn" id="submit-btn"><a href="/articles">記事一覧に戻る</a></div>
+    
+</div>
+

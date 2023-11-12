@@ -1,0 +1,26 @@
+
+
+<% if admin_logged_in? %>
+    <div id="cxxsew-contents">
+        <div class="article">
+            <h1>- ADMINにログイン中 -</h1>
+            <%= link_to "管理画面トップへ", '/admin', class:'btn', id:"submit-btn" %>
+        </div>
+    </div>
+<% else %>
+
+    <div id="cxxsew-contents">
+        <div class="article">
+            <h1>- 管理者専用ログイン画面 -</h1>
+            
+            <%= form_for(:session, url: admin_login_path) do |f| %>
+                <label for="email">ID</label>
+                    <%= f.text_field :name, placeholder:'管理者IDを入力してください' %>
+                <label for="password">パスワード</label>
+                    <%= f.password_field :password, placeholder:'パスワードを入力してください'  %>
+                <%= f.submit 'Log in', class:'btn', id:"submit-btn" %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+

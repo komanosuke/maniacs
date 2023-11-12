@@ -1,0 +1,16 @@
+
+
+<div id="cxxsew-contents">
+    <p id="content-date"><%= @news.updated_at %></p>
+    <h1 id="blog-title" class="center"><%= @news.title %>（Vol.<%= @news.id %>）</h1>
+    
+    
+    <div class="work-box" id="content-box">
+        <%= image_tag @news.image.url, class:"content-img", alt:"" %>
+        <p><%= @news.text %></p>
+    </div>
+    <div class="btn" id="submit-btn"><a href="/news">４コマ一覧に戻る</a></div>
+    
+</div>
+
+

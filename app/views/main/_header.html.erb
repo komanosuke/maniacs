@@ -1,0 +1,61 @@
+<header>
+	<div id="hd-flex">
+		<a href="/" class="pc">
+			<div class="hd-side be-pink">home</div>
+		</a>
+		<div class="toggle-btn sp">
+			<div id="cross">
+				<span class="menu-line-top"></span>
+				<span class="menu-line-middle"></span>
+				<span class="menu-line-bottom"></span>
+			</div>
+		</div>
+		<a href="/index" id="hd-center">
+			<div>Cxx</div>
+			<%= image_tag "/image/logo.PNG", alt:"" %>
+			<div>Sew</div>
+		</a>
+		<% if admin_logged_in? %>
+			<%= link_to "Log out", admin_logout_path, method: :delete, class:"hd-side" %>
+		<% else %>
+			<% if logged_in? %>
+				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side be-pink" %>
+			<% else%>
+				<a href="/login"><div class="hd-side be-pink">log in</div></a>
+			<% end %>
+		<% end %>
+	</div>
+</header>
+
+<div class="hidden sp" id="sp-bg"></div>
+<div class="hidden sp" id="sp-menu">
+	<h1 class="menu-h2">- Menu -</h1>
+	<div class="explain">
+		<div class="rect-wrapper">
+			<div class="rect-row">
+				<a href="/concept"><p>CONCEPT</p></a>
+				<a href="/news"><p>NEWS</p></a>
+			</div>
+			<div class="rect-row">
+				<a href="/works"><p>WORKS</p></a>
+				<a href="/articles"><p>CONTENTS</p></a>
+			</div>
+		</div>
+	</div>
+	<div class="explain">
+		<div class="rect-wrapper" id="sub-menu2">
+			<a href="/help">HELP</a>
+			<a href="/contact">CONTACT</a>
+			<a href="/policy">POLICY</a>
+			<a href="/terms">TERMS</a>
+		</div>
+	</div>
+	<a href="/" id="go-top">Portfolio トップに戻る</a>
+	<div id="menu-close">×</div>
+</div>
+
+<% if @cart.present? and @cart.cart_works.length != 0 %>
+	<a href="/purchase" id="cart-sign">
+		<%= image_tag '/image/cart.png', alt:"" %>
+	</a>
+<% end %>

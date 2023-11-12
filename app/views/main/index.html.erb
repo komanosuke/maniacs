@@ -1,0 +1,107 @@
+
+<div class="container">
+
+    
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><%= image_tag "/image/koma1.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/koma2.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/koma3.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/koma4.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/koma5.png", class:"main-photo", alt:"" %></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <div id="cxxsew-contents">
+        <div class="article">
+            <h1>- メイニアクスについて -</h1>
+            <div class="article-flex">
+                <div class="article-p-wrapper">
+                    <p>弊社は新時代の自由な生き方をコンセプトに掲げ、独自性溢れるデザインのTシャツ販売を通じてお客様の個性を輝かせるお手伝いをしています。ファッションと音楽の融合を追求し、オリジナリティあふれる楽曲作成サービスも提供しております。</p>
+                    <p>クリエイティブな発想と革新的なテクノロジーを駆使して、お客様の表現の自由をサポートするためのプラットフォームを提供しています。</p>
+                </div>
+                <div class="article-img-wrapper">
+                    <%= image_tag "/image/nosey.svg", alt:"", class:"fit-edit" %>
+                </div>
+            </div>
+        </div>
+        
+
+        <h2>- Works -</h2>
+        <p>作品は本サイトでご注文いただけます。</p>
+        <% if @works.empty? %>
+            <p>No works yet</p>
+        <% else %>
+            <div class="works pfs">
+                <% @works.each do |work| %>
+                <div class="work pf">
+                    <a href="/works/<%= work.id %>">
+                        <%= image_tag work.image.url, alt:"" %>
+                        <div class="pf-p-wrapper">
+                            <p>title: <%= work.title %></p>
+                            <p>price: ￥<%= work.price.to_s(:delimited) %></p>
+                        </div>
+                    </a>
+                </div>
+                <% end %>
+            </div>
+        <% end %>
+        <div class="btn be-pink"><a href="/works">View More</a></div>
+
+        
+
+        <h2>- Articles -</h2>
+        <p>日々の所感などを記事にしています。</p>
+        <% if @articles.empty? %>
+            <p>No articles yet</p>
+        <% else %>
+            <div class="works pfs">
+                <% @articles.each do |article| %>
+                    <div class="work pf">
+                        <a href="/articles/<%= article.id %>">
+                            <%= image_tag article.image.url, alt:"" %>
+                            <div class="pf-p-wrapper article-news">
+                                <p><%= article.title %></p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+        <div class="btn be-pink"><a href="/articles">View More</a></div>
+
+        <h2>- Comics -</h2>
+        <p>社会風刺の４コマ漫画を描いています。</p>
+        <% if @news.empty? %>
+            <p>No comics yet</p>
+        <% else %>
+            <div class="works pfs mangas">
+                <% @news.each do |news| %>
+                    <div class="work pf">
+                        <a href="/news/<%= news.id %>">
+                            <%= image_tag news.image.url, alt:"" %>
+                            <div class="pf-p-wrapper article-news">
+                                <p><%= news.title %></p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+        <div class="btn be-pink"><a href="/news">View More</a></div>
+
+        <h2>- Concept Movie -</h2>
+        <p>自由を歌った楽曲「こまのうた」</p>
+        <div id="video">
+            <%= youtube_embed('https://www.youtube.com/watch?v=BfJOrpjqj4A') %>
+        </div>
+    </div>
+
+    
+</div>
+
+<%= javascript_pack_tag 'swiper' %>

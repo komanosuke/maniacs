@@ -1,0 +1,50 @@
+<div class="table-name">
+    <h1>商品一覧</h1>
+    <% if @works.empty? %>
+        <p>商品が投稿されていません。</p>
+        <div class="btn"><a href="/works/new">新規作成</a></div>
+    <% else %>
+        <div class="btn"><a href="/works/new">新規作成</a></div>
+        <p>商品数合計: <%= @works.length %></p>
+        <p>←データ列が多い場合は横スクロール→</p>
+        <div class="table-wrapper" id="scroll-table">
+            <div class="tr">
+                <div class="th scroll-th check">
+                    <input type="checkbox" id="check-all">
+                </div>
+                <div class="th scroll-th edit">EDIT</div>
+                <div class="th scroll-th id">ID</div>
+                <div class="th scroll-th image">IMAGE</div>
+                <div class="th scroll-th name">NAME</div>
+                <div class="th scroll-th category">CATEGORY</div>
+            </div>
+            <% @works.each do |work| %>
+                <div class="tr">
+                    <div class="td scroll-td check">
+                        <input type="checkbox" class="delete-check">
+                    </div>
+                    <div class="td scroll-td edit">
+                        <%= link_to '/works/' + work.id.to_s + '/edit' do %>
+                            <%= image_tag "/svg/edit.svg", class: 'icon', id: 'edit-icon' %>
+                        <% end %>
+                    </div>
+                    <div class="td scroll-td id"><%= work.id %></div>
+                    <div class="td scroll-td image">
+                        <%= image_tag work.image.url, class: "table-image" %>
+                    </div>
+                    <div class="td scroll-td name"><%= work.title %></div>
+                    <div class="td scroll-td category"><%= @work_cat_hash[work.work_cat_id] %></div>
+                    
+                </div>
+            <% end %>   
+        </div>
+    <% end %>
+
+    <%= form_with url: '/delete' do |form| %>
+        <%= form.hidden_field "delete_list", {value: ''} %>
+        <%= form.hidden_field "which", {value: 'work'} %>
+        <%= form.submit "削除", class:"btn submit-btn", id:"delete-btn" %>
+    <% end %>
+    
+    <div class="btn" id="submit-btn"><a href="/admin">管理画面トップへ</a></div>
+</div>

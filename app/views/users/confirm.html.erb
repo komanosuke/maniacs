@@ -1,0 +1,47 @@
+<main>
+    <div class="contents" id="login-con">
+        <% if @user %>
+            <p class="notice">この内容で登録してもよろしいですか？</p>
+            <p>アカウント名: <%= @user.name %></p>
+            <p>アカウントID: <%= @user.username %></p>
+            <p>メールアドレス: <%= @user.email %></p>
+            <p>郵便番号: <%= @user.zip %></p>
+            <p>都道府県: <%= @user.prefecture %></p>
+            <p>市町村: <%= @user.city %></p>
+            <p>それ以降の住所: <%= @user.street %></p>
+            <p>電話番号: <%= @user.tel %></p>
+            <p>プロフィール内容: <%= @user.profile %></p>
+
+            <%= form_with(model: @user, url: { controller: 'users', action: 'create' }) do |f| %>
+                <%= f.hidden_field :name %>
+                <%= f.hidden_field :username %>
+                <%= f.hidden_field :email %>
+                <%= f.hidden_field :password %>
+                <%= f.hidden_field :zip %>
+                <%= f.hidden_field :prefecture %>
+                <%= f.hidden_field :city %>
+                <%= f.hidden_field :street %>
+                <%= f.hidden_field :tel %>
+                <%= f.hidden_field :profile %>
+                <div><%= f.submit '送信' %></div>
+            <% end %>
+
+            <%= form_with(model: @user, url: { controller: 'users', action: 'back' }) do |f| %>
+                <%= f.hidden_field :name %>
+                <%= f.hidden_field :username %>
+                <%= f.hidden_field :email %>
+                <%= f.hidden_field :password %>
+                <%= f.hidden_field :zip %>
+                <%= f.hidden_field :prefecture %>
+                <%= f.hidden_field :city %>
+                <%= f.hidden_field :street %>
+                <%= f.hidden_field :tel %>
+                <%= f.hidden_field :profile %>
+                <div><%= f.submit '入力画面に戻る' %></div>
+            <% end %>
+        <% else %>
+            <p>申し訳ありませんが、こちらのリンクからやり直してください。</p>
+            <%= link_to "登録画面へ戻る", '/users/new' %>
+        <% end %>
+    </div>
+</main>
