@@ -76,9 +76,9 @@ gem 'mechanize'
 
 
 group :production do
-  # gem 'unicorn', '~> 6.0.0'
+  gem 'unicorn', '~> 6.0.0'
   gem 'pg'
-  # gem 'mysql2'
+  gem 'mysql2'
 end
 
 gem 'net-imap'
