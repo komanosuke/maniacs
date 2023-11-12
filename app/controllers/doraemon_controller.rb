@@ -4,8 +4,7 @@ class DoraemonController < ApplicationController
     def doraemon
         if params[:msg]
             msg = params[:msg]
-            # client = OpenAI::Client.new(access_token: ENV['API_KEY'])
-            client = OpenAI::Client.new(access_token: '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')
+            client = OpenAI::Client.new(access_token: ENV['API_KEY'])
             
             res = client.chat(
             parameters: {
